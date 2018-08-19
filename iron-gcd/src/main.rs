@@ -14,9 +14,9 @@ use urlencoded::UrlEncodedBody;
 fn main() {
     let mut router = Router::new();
     router.get("/", get_from, "root");
-    router.get("/gcd", post_gcd, "gcd");
+    router.post("/gcd", post_gcd, "gcd");
     println!("Serving on http://localhost:3000...");
-    Iron::new(get_from).http("localhost:3000").unwrap();
+    Iron::new(router).http("localhost:3000").unwrap();
 }
 
 fn get_from(_request: &mut Request) -> IronResult<Response> {
